@@ -1,0 +1,22 @@
+service: ReferEATtest
+app: ReferEAT
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: serverlessUser
+  region: us-north-1
+
+
+functions:
+  getGoogleNearPlaces:
+    GoogleAPI: GoogleAPI.getGoogleNearPlaces
+    events:
+      - http:
+          path: googleMaps
+          method: get
+          cors: true 
+
+plugins:
+  - serverless-offline
+
